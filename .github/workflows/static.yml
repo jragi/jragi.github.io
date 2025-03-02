@@ -24,16 +24,27 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          # Минимизируем вывод Git
           quiet: true
+          # Используем токен из Secrets вместо стандартного GITHUB_TOKEN
           token: ${{ secrets.REPO_TOKEN }}
+          # Указываем репозиторий из Secrets (если нужно кастомное имя, иначе берется текущий)
           repository: ${{ secrets.REPO_NAME }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Delete artifact
+        if: always()
+        uses: actions/delete-artifact@v3
         with:
-          # Указываем путь к статическому контенту
-          path: './'
+          name: github-pages
