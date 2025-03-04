@@ -28,9 +28,7 @@ jobs:
           persist-credentials: false
           token: ${{ secrets.REPO_TOKEN }}
           repository: ${{ secrets.REPO_NAME }}
-          
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
+        
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
