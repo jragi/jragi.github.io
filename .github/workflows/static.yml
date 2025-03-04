@@ -32,14 +32,10 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload artifact
-        uses: jragi/upload-pages-artifact@main
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: '.'
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          publish_dir: .
 
       - name: Delete artifact via API
         if: always()
