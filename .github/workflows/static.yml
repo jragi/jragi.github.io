@@ -35,7 +35,8 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
-          publish_dir: .
+         github_token: ${{ secrets.GITHUB_TOKEN }}
+         publish_dir: .
 
       - name: Delete artifact via API
         if: always()
