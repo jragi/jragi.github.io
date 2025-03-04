@@ -11,15 +11,8 @@ permissions:
   id-token: write
   actions: write
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
 jobs:
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -28,13 +21,6 @@ jobs:
           persist-credentials: false
           token: ${{ secrets.REPO_TOKEN }}
           repository: ${{ secrets.REPO_NAME }}
-        
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-         github_token: ${{ secrets.REPO_TOKEN }}
-         publish_dir: .
 
       - name: Delete artifact via API
         if: always()
