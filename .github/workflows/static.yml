@@ -29,10 +29,6 @@ jobs:
           token: ${{ secrets.REPO_TOKEN }}
           repository: ${{ secrets.REPO_NAME }}
           
-      - name: Replace artifactId
-        run: |
-          sed -i 's/\${artifactId}/257893458429/g' ./node_modules/@actions/artifact/lib/internal/upload/upload-artifact.js
-      
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
